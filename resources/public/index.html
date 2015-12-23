@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" />
+</head>
+<body>
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Acme Corp.</h1>
+        <div id="content"></div>
+        <form action="/post_spreadsheet" method="POST" enctype="multipart/form-data">
+            <input type="file" name="spreadsheet"/>
+            <input type="submit" value="Parse the spreadsheet"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
