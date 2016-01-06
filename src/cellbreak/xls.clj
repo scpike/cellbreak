@@ -11,8 +11,7 @@
 (defn parse-spreadsheet
   "Grab rows from an xls file"
   [fname]
-  (sheet/load-workbook-from-file fname)
-  )
+  (sheet/load-workbook-from-file fname))
 
 (defn io->wb
   "Grab rows from an xls file"
@@ -30,22 +29,25 @@
   (let [rvals (map row-vals (sheet/row-seq s))
         sname (sheet/sheet-name s)]
     {:name sname
-     :vals (if limit (take limit rvals) rvals)}
+     :vals (vec (if limit (take limit rvals) rvals))}
     ))
 
 (defn wb->map
   "Convert a sheet to json"
   [wb] (let [sheets (sheet/sheet-seq wb)
-             munged (map munge-sheet sheets)]
+             munged (vec (map munge-sheet sheets))]
          munged))
 
 (defn wb->json
   [wb]
   (json/write-str (wb->map wb)))
 
-(def fpath "C:\\Users\\spike\\Downloads\\prices.xlsx")
-(def wb (parse-spreadsheet fpath))
-(def sh1 (first (sheet/sheet-seq wb)))
-(def sheet-data (map row-vals (sheet/row-seq sh1)))
+(defn io->json
+  [io]
+  (let [wb (io->wb io)]
+    (wb->json wb)))
 
-
+(defn io->map
+  [io]
+  (let [wb (io->wb io)]
+    (wb->map wb)))

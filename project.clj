@@ -11,10 +11,9 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-json "0.4.0"]
                  ]
-  :plugins [[lein-ring "0.7.3"]]
+  :plugins [[lein-ring "0.7.3"]
+            [cider/cider-nrepl "0.10.0"]]
   :ring {:handler cellbreak.handler/app}
   :profiles
-  {:dev {:dependencies [[ring-mock "0.1.3"]]}})
-
-
-
+  {:dev {:dependencies [[ring-mock "0.1.3"]]
+         :resource-paths ["test/resources"]}})
